@@ -212,7 +212,7 @@ def callback(request):
         for pd in pdf:
           pd.delete()
         return redirect('/callback')
-     return render(request,"callback.htnl")
+     return render(request,"callback.html")
 
      
 
