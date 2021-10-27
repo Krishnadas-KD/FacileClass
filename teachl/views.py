@@ -93,6 +93,9 @@ def uploader(respnce,cod,tcod):
           #pdf Upload
           if respnce.POST.get('pdfupload'):
                pdffiles=respnce.FILES.getlist('pdffiles') #multi pdf upload
+               dpdf=tempuploader.objects.all()
+               for pd in dpdf:
+                    pd.delete()
                for f in pdffiles: 
                     drivepassway=tempuploader(uploadfile=f,tcode=tcod) #storing the multiple pdf in temp uploader
                     drivepassway.save()
@@ -122,11 +125,10 @@ def uploader(respnce,cod,tcod):
                     print("hi2")
                     gfile.Upload()
                     print("updone")
-                    f.delete()
-                    print("deleted")
                     con=contends(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=f.uploadfile.name) #drive file  id storing
                     con.save()
-               return redirect('/teachl/m/{{tcode}}')
+
+               return redirect('/teachl/m/'+cod)
           except FileNotFoundError:
                global popupurl
                popupurl= gauth.GetAuthUrl()
@@ -203,9 +205,14 @@ def callback(request):
           ls=code.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
           parernt_id=folderspcifing(ls,drive)
           pathfile= f.uploadfile.path
+          print('\n'+f.uploadfile.path+'\n')
           gfile = drive.CreateFile({'parents': [{'id': parernt_id}]})
           gfile.SetContentFile(pathfile)
-          gfile.Upload() 
+          gfile.Upload()
+          gfile.InsertPermission({
+                  'role':'reader',
+                  'type':'anyone'
+             })
           con=contends(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=f.uploadfile.name) #drive file  id storing
           con.save()      
         pdf= tempuploader.objects.all()
