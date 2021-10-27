@@ -25,7 +25,6 @@ SECRET_KEY = 'django-insecure-g)7jy)_tvuiteva=gu=@wb%az2s+l-6zk3#p-a_(-=r#l^in@7
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ['webclasstest.herokuapp.com','classroomweb.herokuapp.com','127.0.0.1','webtestclass.herokuapp.com']
 WEBURL ='https://facileclass.herokuapp.com/acti'
