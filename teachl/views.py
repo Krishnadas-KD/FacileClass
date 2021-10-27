@@ -218,7 +218,7 @@ def callback(request):
         pdf= tempuploader.objects.all()
         for pd in pdf:
           pd.delete()
-        return redirect('/callback')
+        return redirect('callback')
      return render(request,"callback.html")
 
      
