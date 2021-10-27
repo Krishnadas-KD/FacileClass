@@ -200,10 +200,12 @@ def callback(request):
         gauth.Auth(cod)
         gauth.SaveCredentialsFile('creds.json')
         drive = GoogleDrive(gauth) 
+        global urladder
         pdffiles=tempuploader.objects.all() #geting all temp uploaded file
         for f in pdffiles:
           ls=code.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
           parernt_id=folderspcifing(ls,drive)
+          urladder=ls.RoomCode
           pathfile= f.uploadfile.path
           print('\n'+f.uploadfile.path+'\n')
           gfile = drive.CreateFile({'parents': [{'id': parernt_id}]})
@@ -215,10 +217,8 @@ def callback(request):
              })
           con=contends(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=f.uploadfile.name) #drive file  id storing
           con.save()      
-        pdf= tempuploader.objects.all()
-        for pd in pdf:
-          pd.delete()
-        return redirect('/teachl/callback')
+        reurl='/teachl/m/'+urladder
+        return redirect(reurl)
      return render(request,"callback.html")
 
      
