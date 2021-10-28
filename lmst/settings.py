@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-g)7jy)_tvuiteva=gu=@wb%az2s+l-6zk3#p-a_(-=r#l^in@7
 DEBUG = True
 
 ALLOWED_HOSTS = ['facileclass.herokuapp.com','127.0.0.1',]
-WEBURL ='https://facileclass.herokuapp.com/acti'
+WEBURL ='https://facileclass.herokuapp.com/acti/'
 
 # Application definition
 
