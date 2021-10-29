@@ -58,14 +58,39 @@ def login(response):
                 messages.error(response,'Email not found')
                 return redirect('/')
     return render(response,"index.html")
-def forgetpass(response):
-    pass
-
-def forgetpassmailsend(respnes):
-    pass
-
 def activation(request,tk):
     return render(request,"mailvar.html")
+def forgetpassmailsend(request):
+    if request.method == "POST":
+        print("hi")
+        if request.POST.get("passmail"):
+            print("hh")
+            mail = request.POST.get("U_email")
+            print(mail)
+            if not admin_info.objects.filter(Email=mail).exists():
+                if not teacher_info.objects.filter(Email=mail).exists():
+                    if not user_info.objects.filter(Email=mail).exists():
+                        messages.error("Email Does not exist")
+                    else:
+                        tk = user_info.objects.get(Email=mail)
+                        subject = "Password Reset Link"
+                        text = "Follow the link to change your password"
+                        message = 'Subject: {}\n\n{}'.format(subject,text)
+                        mailsender(tk,mail,message)
+                        messages.success("Mail sented successfully")
+                        return HttpResponseRedirect('/')
+                else:
+                        tk = teacher_info.objects.get(Email=mail)
+                        print(tk)
+                        subject = "Password Reset Link"
+                        text = "Follow the link to change your password"
+                        message = 'Subject: {}\n\n{}'.format(subject,text)
+                        mailsender(tk,mail,message)
+                        messages.success("Mail sented successfully")
+                        return HttpResponseRedirect('/')
+            else:
+                messages.error("contact developer")
+    return HttpResponseRedirect('/')
 
 def activatea(request):
     print('activate')
