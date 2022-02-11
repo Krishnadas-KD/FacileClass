@@ -78,7 +78,7 @@ def forgetpassmailsend(request):
                         message = 'Subject: {}\n\n{}'.format(subject,text)
                         mailsender(tk,mail,message)
                         messages.success("Mail sented successfully")
-                        return HttpResponseRedirect('/')
+                        return redirect('/')
                 else:
                         tk = teacher_info.objects.get(Email=mail)
                         print(tk)
@@ -87,7 +87,7 @@ def forgetpassmailsend(request):
                         message = 'Subject: {}\n\n{}'.format(subject,text)
                         mailsender(tk,mail,message)
                         messages.success("Mail sented successfully")
-                        return HttpResponseRedirect('/')
+                        return redirect('/')
             else:
                 messages.error("contact developer")
     return redirect('/')

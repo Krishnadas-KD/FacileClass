@@ -11,6 +11,5 @@ def mailsender(res,Email,sub):
     message=sub+link
     smtpserver.sendmail(EMAIL_HOST_USER,Email,message)
     smtpserver.close()
-            
     return True
             
