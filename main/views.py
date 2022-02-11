@@ -90,7 +90,7 @@ def forgetpassmailsend(request):
                         return HttpResponseRedirect('/')
             else:
                 messages.error("contact developer")
-    return HttpResponseRedirect('/')
+    return redirect('/')
 
 def activatea(request):
     print('activate')
