@@ -104,7 +104,7 @@ def activatea(request):
     if request.method == 'POST':
         name = request.POST.get("U_name1")
         passwrd = request.POST.get("U_password1")
-        if user_info.objects.filter(token=tk).exists():
+        if user_info.objects.filter(Email=email).exists():
             user_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name)
             messages.error(request, 'Your acount is Activated')
             request.session['mail'] = email
