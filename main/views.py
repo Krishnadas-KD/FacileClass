@@ -61,7 +61,8 @@ def login(response):
                 return redirect('/')
     return render(response,"index.html")
 def activation(request,tk):
-    if tk[-6:] == "forget":
+    print(tk[-6:])
+    if tk[-6:] == 'forget':
         if user_info.objects.filter(token=tk).exists():
             user_info.objects.filter(token=tk).update(token="")
             return render(request,"fpass.html")
