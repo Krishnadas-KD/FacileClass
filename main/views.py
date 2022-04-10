@@ -79,7 +79,7 @@ def forgetpassmailsend(request):
                     if not user_info.objects.filter(Email=mail).exists():
                         messages.error("Email Does not exist")
                     else:
-                        tk = user_info.objects.get(Email=mail)
+                        tk = user_info.objects.get(Email=mail).token
                         subject = "Password Reset Link"
                         text = "Follow the link to change your password"
                         message = 'Subject: {}\n\n{}'.format(subject,text)
@@ -87,7 +87,7 @@ def forgetpassmailsend(request):
                         messages.success("Mail sented successfully")
                         return redirect('/')
                 else:
-                        tk = teacher_info.objects.get(Email=mail)
+                        tk = teacher_info.objects.get(Email=mail).token
                         print(tk)
                         subject = "Password Reset Link"
                         text = "Follow the link to change your password"
