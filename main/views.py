@@ -61,6 +61,15 @@ def login(response):
                 return redirect('/')
     return render(response,"index.html")
 def activation(request,tk):
+    if tk[-6:] == "forget":
+        if user_info.objects.filter(token=tk).exists():
+            user_info.objects.filter(token=tk).update(token="")
+            return render(request,"fpass.html")
+        elif teacher_info.objects.filter(token=tk).exists():
+            teacher_info.objects.filter(token=tk).update(token="")
+            return render(request,"fpass.html")
+        else:
+            return redirect('/')
     if teacher_info.objects.filter(token=tk).exists():
         request.session['mail'] = teacher_info.objects.get(token=tk).Email
         return render(request,"mailvar.html")
@@ -81,18 +90,18 @@ def forgetpassmailsend(request):
                     else:
                         tk = user_info.objects.get(Email=mail).token
                         subject = "Password Reset Link"
-                        text = "Follow the link to change your password"
+                        text = "Follow the link to change your password\n"
                         message = 'Subject: {}\n\n{}'.format(subject,text)
-                        mailsender(tk,mail,message)
+                        mailsender(tk+"forget",mail,message)
                         messages.success(request,"Mail sented successfully")
                         return redirect('/')
                 else:
                         tk = teacher_info.objects.get(Email=mail).token
                         print(tk)
                         subject = "Password Reset Link"
-                        text = "Follow the link to change your password"
+                        text = "Follow the link to change your password\n"
                         message = 'Subject: {}\n\n{}'.format(subject,text)
-                        mailsender(tk,mail,message)
+                        mailsender(tk+"forget",mail,message)
                         messages.success(request,"Mail sented successfully")
                         return redirect('/')
             else:
@@ -120,5 +129,21 @@ def activatea(request):
     
         
 
-
-            
+def newpass(request):
+    email = request.session['mail']
+    if request.method == 'POST':
+        passwrd = request.POST.get("U_password1")
+        if user_info.objects.filter(Email=email).exists():
+            user_info.objects.filter(Email=email).update(passwords=passwrd)
+            messages.error(request, 'New Password is set')
+            request.session['mail'] = email
+            return redirect('/')
+        elif teacher_info.objects.filter(Email=email).exists():
+            teacher_info.objects.filter(Email=email).update(passwords=passwrd)
+            messages.error(request, 'New Password is set')
+            request.session['mail'] = email
+            return redirect('/')
+        else:
+            messages.error(request, 'Email not found Contact Admin')
+            return redirect('/')
+    
