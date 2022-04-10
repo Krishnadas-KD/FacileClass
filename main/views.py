@@ -104,8 +104,6 @@ def activatea(request):
     if request.method == 'POST':
         name = request.POST.get("U_name1")
         passwrd = request.POST.get("U_password1")
-        print("\n\n\n=========\n\n")
-        print(name,passwrd)
         if user_info.objects.filter(Email=email).exists():
             user_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name)
             messages.error(request, 'Your acount is Activated')
