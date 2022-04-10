@@ -23,7 +23,7 @@
         <div class="box">
             <div class="inner-box">
                 <div class="forms-wrap">
-                    <form action="\login" method="POST" autocomplete="off" class="sign-in-form">
+                    <form action="{% url 'activatea' %}" method="POST" autocomplete="off" class="sign-in-form">
                         {% csrf_token %}
                         <div class="logo">
                             <img src="{% static '/img/logo.png' %}" alt="easyclass" />
