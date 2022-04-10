@@ -94,9 +94,8 @@ def forgetpassmailsend(request):
     return redirect('/')
 
 def activatea(request):
-    print('activate')
+    email = request.session['mail']
     if request.method == 'POST':
-        email = request.POST.get("U_email")
         name = request.POST.get("U_name1")
         passwrd = request.POST.get("U_password1")
         if user_info.objects.filter(Email=email).exists():
@@ -112,7 +111,7 @@ def activatea(request):
         else:
             messages.error(request, 'Email not found Contact Admin')
             return redirect('/')
-    return render(request,"mailvar.html")
+    
         
 
 
