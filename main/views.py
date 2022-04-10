@@ -3,6 +3,7 @@ from .models import *
 from django.contrib import messages 
 from django.contrib.messages.api import error
 from django.views.decorators.csrf import csrf_protect
+from .mailsender import *
 
 # Create your views here.
 @csrf_protect
