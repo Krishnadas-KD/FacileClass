@@ -60,16 +60,15 @@ def login(response):
                 return redirect('/')
     return render(response,"index.html")
 def activation(request,tk):
-    if teacher_info.objects.filter(Activate_tk=tk).exists():
+    if teacher_info.objects.filter(token=tk).exists():
         return render(request,"mailvar.html")
-    if user_info.objects.filter(Activate_tk=tk).exists():
+    if user_info.objects.filter(token=tk).exists():
         return render(request,"mailvar.html")
     return redirect('/')
 def forgetpassmailsend(request):
     if request.method == "POST":
-        print("hi")
         if request.POST.get("passmail"):
-            print("hh")
+
             mail = request.POST.get("U_email")
             print(mail)
             if not admin_info.objects.filter(Email=mail).exists():
