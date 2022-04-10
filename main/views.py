@@ -1,3 +1,4 @@
+from lib2to3.pgen2 import token
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib import messages 
@@ -61,8 +62,10 @@ def login(response):
     return render(response,"index.html")
 def activation(request,tk):
     if teacher_info.objects.filter(token=tk).exists():
+        request.session['mail'] = teacher_info.objects.get(token=tk).Email
         return render(request,"mailvar.html")
     if user_info.objects.filter(token=tk).exists():
+        request.session['mail'] = user_info.objects.get(token=tk).Email
         return render(request,"mailvar.html")
     return redirect('/')
 def forgetpassmailsend(request):
@@ -101,7 +104,7 @@ def activatea(request):
     if request.method == 'POST':
         name = request.POST.get("U_name1")
         passwrd = request.POST.get("U_password1")
-        if user_info.objects.filter(Email=email).exists():
+        if user_info.objects.filter(token=tk).exists():
             user_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name)
             messages.error(request, 'Your acount is Activated')
             request.session['mail'] = email
