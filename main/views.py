@@ -84,7 +84,7 @@ def forgetpassmailsend(request):
                         text = "Follow the link to change your password"
                         message = 'Subject: {}\n\n{}'.format(subject,text)
                         mailsender(tk,mail,message)
-                        messages.success("Mail sented successfully")
+                        messages.success(request,"Mail sented successfully")
                         return redirect('/')
                 else:
                         tk = teacher_info.objects.get(Email=mail).token
@@ -93,7 +93,7 @@ def forgetpassmailsend(request):
                         text = "Follow the link to change your password"
                         message = 'Subject: {}\n\n{}'.format(subject,text)
                         mailsender(tk,mail,message)
-                        messages.success("Mail sented successfully")
+                        messages.success(request,"Mail sented successfully")
                         return redirect('/')
             else:
                 messages.error("contact developer")
