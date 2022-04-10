@@ -300,6 +300,20 @@ main.sign-up-mode .carousel {
     border-radius: 1rem;
 }
 
+.alertboxclass {
+    position: fixed;
+    width: 70%;
+    padding: 12px 16px;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 85%;
+    font-size: 16px;
+    background-color: rgba(217, 237, 247, 1);
+    color: rgba(49, 112, 143, 1);
+    border-color: rgba(126, 182, 193, 1);
+}
+
 @media (max-width: 850px) {
     .box {
         height: auto;
@@ -322,31 +336,6 @@ main.sign-up-mode .carousel {
         max-width: revert;
         padding: 1.5rem 2.5rem 2rem;
         transition: transform 0.8s ease-in-out, opacity 0.45s linear;
-    }
-    .altext {
-        font-family: Quicksand;
-    }
-    .alert {
-        width: 50%;
-        margin: 20px auto;
-        padding: 30px;
-        position: relative;
-        border-radius: 5px;
-        box-shadow: 0 0 15px 5px #ccc;
-    }
-    .close {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        opacity: 0.5;
-        border-width: 1px;
-        border-style: solid;
-        border-radius: 50%;
-        right: 15px;
-        top: 25px;
-        text-align: center;
-        font-size: 1.6em;
-        cursor: pointer;
     }
     .heading {
         margin: 2rem 0;
