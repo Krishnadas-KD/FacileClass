@@ -91,6 +91,40 @@ def topicadder(responce,cod):
 
 def uploader(respnce,cod,tcod):
      if respnce.method == 'POST':
+          #link upload
+          if respnce.POST.get('addlinksubmit'):
+               savelink=respnce.POST.get('addlink')
+               ls= code.objects.get(UniqCode=tcod)
+               linksave=otherlink(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,link=savelink)
+               linksave.save()
+               return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
+          #youthub vedio ubload
+          if respnce.POST.get('youtubelink'):
+               savelink=respnce.POST.get('youtubevediolink')
+               starthour=int(respnce.POST.get('starthour'))
+               startminit=int(respnce.POST.get('startminit'))
+               startsecond=int(respnce.POST.get('startsecond'))
+               stophoure=int(respnce.POST.get('stophoure'))
+               stopminite=int(respnce.POST.get('stopminite'))
+               stopsecond=int(respnce.POST.get('stopsecond'))
+               startin=(starthour*360)+(startminit*60)+(startsecond)
+               stopin=(stophoure*360)+(stopminite*60)+(stopsecond)
+               res = savelink.partition("spl_word")[2]
+               if "watch?v=" in savelink:
+                    res = savelink.partition("watch?v=")[2]
+                    vediocode= res[0:11]
+                    vedifinallink="https://www.youtube.com/embed/"+str(vediocode)+"?version=3&start="+str(startin)+"&end="+str(stopin)+"&autoplay=0&controls=0&rel=0&loop=1"
+
+               if "youtu.be/" in savelink:
+                    res = savelink.partition("youtu.be/")[2]
+                    vediocode= res[0:11]
+                    vedifinallink="https://www.youtube.com/embed/"+vediocode+"?version=3&start="+startin+"&end="+stopin+"&autoplay=0&controls=0&rel=0&loop=1"
+               ls= code.objects.get(UniqCode=tcod)
+               linksave=youtubelink(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,link=vedifinallink)
+               linksave.save()
+               return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
+
+          
           #pdf Upload
           if respnce.POST.get('pdfupload'):
                pdffiles=respnce.FILES.getlist('pdffiles') #multi pdf upload
@@ -147,40 +181,7 @@ def uploader(respnce,cod,tcod):
                         pd.delete()
                return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
                  '''
-         #link upload
-          if respnce.POST.get('addlinksubmit'):
-               savelink=respnce.POST.get('addlink')
-               ls= code.objects.get(UniqCode=tcod)
-               linksave=otherlink(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,link=savelink)
-               linksave.save()
-               return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
-          #youthub vedio ubload
-          if respnce.POST.get('youtubelink'):
-               savelink=respnce.POST.get('youtubevediolink')
-               starthour=int(respnce.POST.get('starthour'))
-               startminit=int(respnce.POST.get('startminit'))
-               startsecond=int(respnce.POST.get('startsecond'))
-               stophoure=int(respnce.POST.get('stophoure'))
-               stopminite=int(respnce.POST.get('stopminite'))
-               stopsecond=int(respnce.POST.get('stopsecond'))
-               startin=(starthour*360)+(startminit*60)+(startsecond)
-               stopin=(stophoure*360)+(stopminite*60)+(stopsecond)
-               res = savelink.partition("spl_word")[2]
-               if "watch?v=" in savelink:
-                    res = savelink.partition("watch?v=")[2]
-                    vediocode= res[0:11]
-                    vedifinallink="https://www.youtube.com/embed/"+str(vediocode)+"?version=3&start="+str(startin)+"&end="+str(stopin)+"&autoplay=0&controls=0&rel=0&loop=1"
 
-               if "youtu.be/" in savelink:
-                    res = savelink.partition("youtu.be/")[2]
-                    vediocode= res[0:11]
-                    vedifinallink="https://www.youtube.com/embed/"+vediocode+"?version=3&start="+startin+"&end="+stopin+"&autoplay=0&controls=0&rel=0&loop=1"
-               ls= code.objects.get(UniqCode=tcod)
-               linksave=youtubelink(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,link=vedifinallink)
-               linksave.save()
-               return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
-
-          
 
 
 
