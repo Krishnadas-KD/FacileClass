@@ -74,7 +74,7 @@ class otherlink(models.Model):
 
 class examdetails(models.Model):
     tmail=models.CharField(max_length=50)
-    UniqCode=models.CharField(default=examcode(),max_length=10)
+    UniqCode=models.CharField(max_length=10)
     examname=models.CharField(max_length=50)
     examdesc=models.CharField(max_length=200)
     examdate=models.DateTimeField(max_length=200)
