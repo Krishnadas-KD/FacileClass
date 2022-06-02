@@ -18,6 +18,13 @@ def gencode():
         if roominfo.objects.filter(Roomcode=code).count() == 0:
             return code
 
+def examcode():
+    n=10
+    while True:
+        code=''.join(secrets.choice(string.ascii_letters) for x in range(n))
+        if examdetails.objects.filter(UniqCode=code).count() == 0:
+            return code
+
 #room details
 class roominfo(models.Model):
     Email=models.CharField(max_length=50)
@@ -64,3 +71,23 @@ class otherlink(models.Model):
     UniqCode=models.CharField(max_length=10)
     link = models.CharField(max_length=500)
     date=models.DateTimeField(auto_now_add=True)
+
+class examdetails(models.Model):
+    tmail=models.CharField(max_length=50)
+    UniqCode=models.CharField(default=examcode(),max_length=10)
+    examname=models.CharField(max_length=50)
+    examdesc=models.CharField(max_length=200)
+    examdate=models.DateTimeField(max_length=200)
+    totalq=models.IntegerField()
+    finish=models.BooleanField(default=False)
+
+
+class examquestion(models.Model):
+    UniqCode=models.CharField(max_length=10)
+    qno=models.IntegerField()
+    question=models.CharField(max_length=200)
+    optiona=models.CharField(max_length=200)
+    optionb=models.CharField(max_length=200)
+    optionc=models.CharField(max_length=200)
+    optiond=models.CharField(max_length=200)
+    answer=models.CharField(max_length=200)

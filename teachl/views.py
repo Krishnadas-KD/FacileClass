@@ -1,16 +1,17 @@
 from django.shortcuts import render,redirect 
-from django.http import  HttpResponseRedirect 
+from django.http import  HttpResponseRedirect,HttpResponse
 import string
-from main.models import teacher_info
+from main.models import *
 from teachl.models import *
-from main.models import teacher_info
+from userl.models import *
 from django.shortcuts import redirect, render
-from main.models import teacher_info,user_info
-from teachl.models import *
+
 from django.http import HttpResponseRedirect
 import string
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+
+from django.contrib import messages
 
 gauth=GoogleAuth()
 
@@ -262,3 +263,40 @@ def genaratecode():
           code1=''.join(secrets.choice(string.ascii_letters) for x in range(n))
           if code.objects.filter(UniqCode=code1).count() == 0:
                return code1
+def addstud(request,cod):
+     #print(cod)
+     ps = roominfo.objects.filter(url=cod).values()
+     print(ps.values('Roomcode'))
+
+     return render(request,'addstud.html',{'context':ps.values('Roomcode')})
+
+def addstd(request,cod):
+     ob = roominfo.objects.filter(url=cod).values()
+     rcode = ob.values('Roomcode')
+     rname = ob.values('roomname')
+     rurl = ob.values('url')
+     rdesc = ob.values('roomdesc')
+     if request.method == 'POST':
+          name = request.POST.get('stdname')
+          email = request.POST.get('stdmail')
+          if not admin_info.objects.filter(Email=email).exists():
+               if not teacher_info.objects.filter(Email=email).exists():
+                    if not user_info.objects.filter(Email=email).exists():
+                         ps = user_info(Email=email,Name=name,token=gencode())
+                         ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc)
+                         ts.save()
+                         ps.save()
+                    else:
+                         messages.error(request,"Email already exists")
+                         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+               else:
+                    messages.error(request,"Email already exists")
+                    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+          else:
+               messages.error(request,"Email already exists")
+               return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+     return HttpResponse("<h1>added<h1>")
+
+
+def peopl(requset,cod):
+     return render(requset,'people.html')
