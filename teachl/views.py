@@ -58,6 +58,7 @@ def classpass(respones,cod):
                print('\n',rcod.Roomcode,'\n')
                if not popupurl== '0':
                     context={
+                         'rcode':cod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -66,6 +67,7 @@ def classpass(respones,cod):
                          }
                else:
                     context={
+                         'rcode':cod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
