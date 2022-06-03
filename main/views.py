@@ -87,6 +87,7 @@ def forgetpassmailsend(request):
                 if not teacher_info.objects.filter(Email=mail).exists():
                     if not user_info.objects.filter(Email=mail).exists():
                         messages.error("Email Does not exist")
+                        return redirect('/')
                     else:
                         tk = user_info.objects.get(Email=mail).token
                         subject = "Password Reset Link"
