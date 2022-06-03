@@ -73,7 +73,7 @@ def classpass(respones,cod):
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod)
                          }
-               return render(respones, "innerdata.html",{'context':context})
+               return render(respones, "auto.html",{'context':context})
 
 
 
@@ -303,3 +303,11 @@ def addstd(request,cod):
 
 def peopl(requset,cod):
      return render(requset,'people.html')
+
+
+def mainpage(request):
+     return render(request,'auto.html')
+def classpeopleadd(request):
+     return render(request,'cpeople.html')
+def classworkadd(request):
+     return render(request,'classwork.html')
