@@ -13,5 +13,8 @@ urlpatterns = [
     path('callback',callback),
     path("m/<str:cod>/addstd",addstd),
     path('m/<str:cod>/peoples',peopl),
+    path('m/<str:cod>/classpeopleadd',classpeopleadd),
+    path('m/<str:cod>/classworkadd',classworkadd),
+    path('m/<str:cod>/mainpage',mainpage),
     #path('m/<str:cod>/delete',deletedrivefile),
 ]
