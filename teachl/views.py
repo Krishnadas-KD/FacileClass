@@ -276,7 +276,7 @@ def callback(request):
              })
           con=contends(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=f.uploadfile.name) #drive file  id storing
           con.save()      
-        reurl='/teachl/m/'+urladder
+        reurl='/teachl/c/'+urladder
         return redirect(reurl)
      return render(request,"callback.html")
 
