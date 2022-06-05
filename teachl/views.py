@@ -59,7 +59,7 @@ def classpass(respones,cod):
                if not popupurl== '0':
                     context={
                          'url':cod,
-                         'rcode':rcod.Roomcode,
+                         'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -69,7 +69,7 @@ def classpass(respones,cod):
                else:
                     context={
                          'url':cod,
-                         'rcode':rcod.Roomcode,
+                         'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -87,7 +87,7 @@ def classwork(requset,cod):
                if not popupurl== '0':
                     context={
                          'url':cod,
-                         'rcode':rcod.Roomcode,
+                         'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
