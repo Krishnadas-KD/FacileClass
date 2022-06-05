@@ -146,7 +146,7 @@ def uploader(respnce,cod,tcod):
                pdffile=tempuploader.objects.all()
                for f in pdffile:
                     print("hi")
-                    ls=code.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
+                    ls=assigmnet.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
                     parernt_id=folderspcifing(ls,drive)
                     pathfile= f.uploadfile.path
                     gfile = drive.CreateFile({'parents': [{'id': parernt_id}]})
