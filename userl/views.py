@@ -114,10 +114,6 @@ def uploader(respnce,cod,tcod):
           duedate=assigmentdetals.objects.get(UniqCode=tcod).duedate
           present=datetime.now()
          
-          if duedate.date() < present.date():
-              print(present > duedate)
-              messages.error(respnce,'Assignment is not due')
-              return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
 
           if respnce.POST.get('pdfupload'):
                print("heelo")
