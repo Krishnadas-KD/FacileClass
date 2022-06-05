@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <title>Class Room</title>
-    <link rel="stylesheet" href="auto.css">
+    <link rel="stylesheet" href="{% static 'auto.css' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,13 +16,13 @@
         <div class="container mt-0 navbar justify-content-center fixed-top navbar-light bg-light ">
             <ul class="nav twonav ">
                 <li class="nav-item ">
-                    <a class="nav-link navbar-brand " style="padding-right: 50px; color: black;" href="\mainpage">Stream</a>
+                    <a class="nav-link navbar-brand " style="padding-right: 50px; color: black;" href="/teachl/m/{{context.url}}/">Stream</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " style="padding-left :50px; color:black;" href="\classworkadd">Class work</a>
+                    <a class="nav-link " style="padding-left :50px; color:black;" href="/teachl/c/{{context.url}}">Class work</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " style="padding-left :50px; color:black;" href="\classpeopleadd">People</a>
+                    <a class="nav-link " style="padding-left :50px; color:black;" href="/teachl/p/{{context.url}}">People</a>
                 </li>
             </ul>
         </div>
@@ -76,7 +77,7 @@
                         </h6>
                         <hr>
 
-                        <h4>gyd368b</h4>
+                        <h4>{{context.rcode}}</h4>
                         <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#myModal">
    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
@@ -97,7 +98,7 @@
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <h1 class="display-1 ">gyd368b</h1>
+                                    <h1 class="display-1 ">{{context.rcode}}</h1>
                                 </div>
 
                                 <!-- Modal footer -->

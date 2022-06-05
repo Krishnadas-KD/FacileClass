@@ -58,7 +58,8 @@ def classpass(respones,cod):
                print('\n',rcod.Roomcode,'\n')
                if not popupurl== '0':
                     context={
-                         'rcode':cod,
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -67,7 +68,8 @@ def classpass(respones,cod):
                          }
                else:
                     context={
-                         'rcode':cod,
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -75,8 +77,61 @@ def classpass(respones,cod):
                          }
                return render(respones, "auto.html",{'context':context})
 
+def classwork(requset,cod):
+     tk = requset.session['mail']
+     if teacher_info.objects.filter(Email=tk).exists():
+          if roominfo.objects.filter(url=cod).exists():
+               
+               rcod=roominfo.objects.get(url=cod)
+               print('\n',rcod.Roomcode,'\n')
+               if not popupurl== '0':
+                    context={
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
+                         "pdf":contends.objects.filter(RoomCode=cod),
+                         "ls":code.objects.filter(RoomCode=cod),
+                         "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "link":otherlink.objects.filter(RoomCode=cod),
+                         "popuplink":popupurl
+                         }
+               else:
+                    context={
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
+                         "pdf":contends.objects.filter(RoomCode=cod),
+                         "ls":code.objects.filter(RoomCode=cod),
+                         "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "link":otherlink.objects.filter(RoomCode=cod)
+                         }
+               return render(requset, "classwork.html",{'context':context})
 
-
+def prople(requset,cod):
+     tk = requset.session['mail']
+     if teacher_info.objects.filter(Email=tk).exists():
+          if roominfo.objects.filter(url=cod).exists():
+               
+               rcod=roominfo.objects.get(url=cod)
+               print('\n',rcod.Roomcode,'\n')
+               if not popupurl== '0':
+                    context={
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
+                         "pdf":contends.objects.filter(RoomCode=cod),
+                         "ls":code.objects.filter(RoomCode=cod),
+                         "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "link":otherlink.objects.filter(RoomCode=cod),
+                         "popuplink":popupurl
+                         }
+               else:
+                    context={
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
+                         "pdf":contends.objects.filter(RoomCode=cod),
+                         "ls":code.objects.filter(RoomCode=cod),
+                         "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "link":otherlink.objects.filter(RoomCode=cod)
+                         }
+               return render(requset, "people.html",{'context':context})
 def topicadder(responce,cod):
      if responce.method == 'POST':
           if responce.POST.get("tpadd"):

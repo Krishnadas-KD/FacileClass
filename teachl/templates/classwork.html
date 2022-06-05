@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClassWork</title>
-    <link rel="stylesheet" href="workclass.css">
+    <link rel="stylesheet" href="{% static 'workclass.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css"rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css" rel="stylesheet" />
 
 </head>
+
 <body>
 
     <section>
         <div class="container mt-0 navbar justify-content-center fixed-top navbar-light bg-light ">
             <ul class="nav twonav ">
-              <li class="nav-item">
-                <a class="nav-link  navbar-brand" style="padding-right: 50px; color: black;" href="#">ClassWork</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "style="padding-left :50px; color:black;" href="#">Stram</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "style="padding-left :50px; color:black;" href="#">People</a>
-              </li>
+                <li class="nav-item ">
+                    <a class="nav-link " style="padding-right: 50px; color: black;" href="/teachl/m/{{context.url}}/">Stream</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-brand  " style="padding-left :50px; color:black;" href="/teachl/c/{{context.url}}">Class work</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " style="padding-left :50px; color:black;" href="/teachl/p/{{context.url}}">People</a>
+                </li>
             </ul>
-         </div>
-         <hr>
-    
+        </div>
+        <hr>
+
     </section>
     <br>
 
@@ -49,180 +52,475 @@
 
 
     <div class="dropdown container">
-        <button type="button" class="btn btn-dark " data-bs-toggle="dropdown"  style="border-radius:25px;" >
+        <button type="button" class="btn btn-dark " data-bs-toggle="dropdown" style="border-radius:25px;">
          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
     </svg>
      <span class="cre"> Create</span>
         </button>
         <ul class="dropdown-menu mt-2 shadow-lg">
-          
-          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+
+            <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                 <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
               </svg>
-             <span class="items">Assignment</span>
-          </a></li>
+                    <span class="items">Assignment</span>
+                </a>
+            </li>
 
-          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal2">
-          
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+            <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal2">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
                     <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                     <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
                   </svg>
-                 <span class="items">Quiz Assignment</span>
-          </a></li>
-          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                    <span class="items">Quiz Assignment</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                 <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
               </svg>
-              <span class="items">Material </span>
-          </a></li>
-          <hr>
-          <li><a class="dropdown-item" href="#"data-bs-toggle="modal" data-bs-target="#myModal">
-              
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                    <span class="items">Material </span>
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal4">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                 <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
               </svg>
-              <span class="items"> Topics</span>
-          </a></li>
+                    <span class="items"> Topics</span>
+                </a>
+            </li>
         </ul>
-      </div>
+    </div>
 
     </div>
     <hr>
 
 
-<!-- The Modal  assignment -->
-<div class="modal" id="myModal1">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h2 class="modal-title">Assignment</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="container modal-body">
+    <!-- The Modal  assignment -->
+    <div class="modal" id="myModal1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
 
-            <div class="input-group mb-3 input-group-lg">
-                <span class="input-group-text">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h2 class="modal-title">Assignment</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="container modal-body">
+
+                    <div class="input-group mb-3 input-group-lg">
+                        <span class="input-group-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
                         <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                         <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
                         <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
                     </svg>
                 </span>
-                <input type="text" class="form-control" placeholder="Tittle">
-              </div>
-              <br>
+                        <input type="text" class="form-control" placeholder="Tittle">
+                    </div>
+                    <br>
 
-              <label for="comment">Comments:</label>
-              <textarea class="form-control" rows="5" id="comment" name="text"  placeholder="add instructions"></textarea>
-            
+                    <label for="comment">Comments:</label>
+                    <textarea class="form-control" rows="5" id="comment" name="text" placeholder="add instructions"></textarea>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer mb-9">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">submit</button>
+                </div>
+
+            </div>
         </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer mb-9">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">submit</button>
-        </div>
-  
-      </div>
     </div>
-  </div>
 
-  <!-- The Modal Quizz assignment -->
-<div class="modal" id="myModal2">
-    <div class="modal-dialog modal-fullscreen">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h2 class="modal-title">Quizz Assignment</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="container modal-body">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"><b>Tittle</b></label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="tittle">
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Comments</b></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
+    <!-- The Modal Quizz assignment -->
+    <div class="modal" id="myModal2">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
 
-              <div>
-                <label for="meeting-time"><b>Due date:</b></label>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h2 class="modal-title">Quizz Assignment</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-                <input type="datetime-local" id="meeting-time"
-                    name="meeting-time" value="2018-06-12T19:30"
-                    min="2018-06-07T00:00" max="2018-06-14T00:00">
-              </div>
-            
+                <!-- Modal body -->
+                <div class="container modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label"><b>Tittle</b></label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="tittle">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea0" class="form-label"><b>Comments</b></label>
+                        <textarea class="form-control" id="exampleFormControlTextarea0" rows="3"></textarea>
+                    </div>
+                    <hr> <br>
+
+                    <div>
+                        <label for="meeting-time"><b>Due date:</b></label>
+
+                        <input type="datetime-local" id="meeting-time" name="meeting-time" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00">
+                    </div>
+                    <br> <br>
+                    <hr>
+
+
+                    <br>
+                    <hr><br>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer mb-4">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">submit</button>
+                </div>
+
+            </div>
         </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer mb-9">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">submit</button>
-        </div>
-  
-      </div>
     </div>
-  </div>
+
+
+
+    <!-- The Modal  material -->
+    <div class="modal" id="myModal3">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h2 class="modal-title">Material</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="container modal-body">
+                    <form action="tadder" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3 input-group-lg">
+                            <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                        <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                    </svg>
+                </span>
+                            <input type="text" name="topicname" class="form-control" placeholder="Tittle">
+                        </div>
+                        <br>
+
+                        <label for="comment">Comments:</label>
+                        <textarea class="form-control" rows="5" id="comment" name="description" placeholder="add instructions"></textarea>
+                        <br>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer mb-9">
+                    <button type="submit" class="btn btn-danger" name="tpadd" data-bs-dismiss="modal">submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
 
     <div class="container mt-3">
- 
-        <div   class="card" >
-          <div type="button" class=" card-header btn" data-bs-toggle="collapse" data-bs-target="#demo1">
-              <div class="float-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi bi-card-text" viewBox="0 0 16 16">
+        {%for mm in context.ls%}
+        <div class="card">
+            <div type="button" class=" card-header btn" data-bs-toggle="collapse" data-bs-target="#demo1">
+                <div class="float-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi bi-card-text" viewBox="0 0 16 16">
                     <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                     <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
                   </svg>
-              </div>
-              <div class="ssss float-start">
-                activity
-              </div>
-            
-            </div>
-          <div id="demo1" class="collapse">
-            <div class="card-body ">  <label for="floatingSelect">content</label></div> 
-            <div class="card-footer">View material</div>
-        </div>
-        </div>
-        <br>
-    
-        <div class="card" >
-            <div type="button" class=" card-header btn" data-bs-toggle="collapse" data-bs-target="#demo2">
-                <div class="float-start">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi bi-card-text" viewBox="0 0 16 16">
-                      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                      <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
                 </div>
                 <div class="ssss float-start">
-                  activity
+                    {{mm.Tpoicname}}
                 </div>
-              
-              </div>
-            <div id="demo2" class="collapse">
-              <div class="card-body ">  <label for="floatingSelect">content</label></div> 
-              <div class="card-footer">View material</div>
-          </div>
-          </div>
-      
-      </div>
-    
-      
-      
+
+            </div>
+            <div id="demo1" class="collapse">
+                <div class="card-body "> <label for="floatingSelect">{{mm.Tpoicdescrip}}</label></div>
+                <div class="card-footer">
+                    <div class="dropdown container">
+                        <button type="button" class="btn btn-dark " data-bs-toggle="dropdown" style="border-radius:25px;">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+               <span class="cre"> Add material</span>
+                  </button>
+                        <ul class="dropdown-menu mt-2 shadow-lg">
+
+                            <li>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                          <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                          <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                                    <span class="items">Add Pdf</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal5">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                              <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                            </svg>
+                                    <span class="items">Add Link</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                          <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                        </svg>
+                                    <span class="items">Add Youtube </span>
+                                </a>
+                            </li>
+                            <hr>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            {%for pd in context.pdf%} {% if mm.UniqCode == pd.UniqCode %}
+            <div class="card no1" style="width: 18rem;">
+                <div class="fontawesome">
+                    <i class="fas fa-file-pdf fa-5x"></i> {{pd.Name}}
+                </div>
+
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong{{pd.pdf}}">load</button>
+                    <div class="modal fade" id="exampleModalLong{{pd.pdf}}" tabindex="-1" role="dialog" style="padding-left: 30%;" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <br><iframe src="https://drive.google.com/file/d/{{pd.pdf}}/preview" width="60%" height="100%"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            {%endif%} {% endfor %} {%for youtube in context.yt%} {% if mm.UniqCode == youtube.UniqCode %}
+            <div class="card no2" style="width: 18rem;">
+                <div class="fontawesome">
+
+                    <i class="fab fa-youtube fa-5x"></i>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1{{pd.pdf}}">load</button>
+
+                    <div class="modal fade" id="exampleModalLong1{{pd.pdf}}" tabindex="-1" style="padding-left: 28%; padding-top: 10%;" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <iframe id="player" width="603" height="339" src="{{youtube.link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    </div>
+                </div>
+            </div>
+            {%endif%} {% endfor %} {%for l in context.link%} {% if mm.UniqCode == l.UniqCode %}
+            <div class="card no3" style="width: 18rem;">
+                <div class="fontawesome">
+                    <i class="fa fa-link fa-5x" aria-hidden="true"></i>
+                </div>
+                <div class="card-body">
+                    <a href="{{l.link}}" class="btn btn-primary stretched-link">Go somewhere</a>
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- The Modal4 pdf material -->
+            <div class="modal" id="myModal4">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="modal-title">Pdf</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form action="{{mm.UniqCode}}/add" method="POST">
+                            {% csrf_token %}
+                            <!-- Modal body -->
+                            <div class="container modal-body">
+
+                                <div class="input-group mb-3 input-group-lg">
+                                    <span class="input-group-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                  <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                  <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+              </svg>
+          </span>
+                                    <input type="file" class="form-control" required name="pdffiles" placeholder="Tittle">
+                                </div>
+                                <br>
+
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer mb-9">
+                                <button type="submit" class="btn btn-danger" value="pdfupload" name="pdfupload" data-bs-dismiss="modal">submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- The Modal5 linkadd material -->
+            <div class="modal" id="myModal5">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="modal-title">Link</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form action="{{mm.UniqCode}}/add" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Modal body -->
+                            <div class="container modal-body">
+
+                                <div class="input-group mb-3 input-group-lg">
+                                    <span class="input-group-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                  <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                  <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                  <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+              </svg>
+          </span>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" required name="addlink" placeholder="Paste your link here ">
+                                </div>
+                                <br>
+
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer mb-9">
+                                <button type="submit" class="btn btn-danger" value="addlinksubmit" name="addlinksubmit" data-bs-dismiss="modal">submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- The Modal6 you tube add material -->
+            <div class="modal" id="myModal6">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="modal-title">YouTube link</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form action="{{mm.UniqCode}}/add" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Modal body -->
+                            <div class="container modal-body">
+
+                                <div class="input-group mb-3 input-group-lg">
+                                    <span class="input-group-text">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+              <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+              <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+          </svg>
+      </span></div>
+
+                                <div class="column">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                      </svg>
+                                    <label for="exampleFormControlInput3" class="form-label"><b>Add youtube vedio</b></label>
+                                    <input type="text" name='youtubevediolink' class="form-control" id="exampleFormControlInput3" placeholder="add video link">
+                                </div>
+                                <br>
+                                <div class="column">
+                                    <table>
+                                        <tr>
+                                            <th>
+                                                <label for="exampleFormControlInput4" class="form-label"><b>start</b></label></th>
+                                            <th>
+                                                <input type="number" min="0" max="23" name="starthour" class="form-control" id="" placeholder="H" style="width: 80px;"></th>
+                                            <th>
+                                                <input type="number" min="0" max="59" name="startminit" class="form-control" id="" placeholder="M" style="width: 80px;"></th>
+                                            <th>
+                                                <input type="number" min="0" max="59" name="startsecond" class="form-control" id="" placeholder="S" style="width: 80px;"></th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>
+                                                <label for="exampleFormControlInput5" class="form-label"><b>End</b></label></th>
+                                            <th>
+                                                <input type="number" min="0" max="23" value="0" name="stophoure" class="form-control" id="" placeholder="H" style="width: 80px;"></th>
+                                            <th>
+                                                <input type="number" min="0" max="59" value="0" name="stopminite" class="form-control" id="" placeholder="M" style="width: 80px;"></th>
+                                            <th>
+                                                <input type="number" min="0" max="59" value="0" name="stopsecond" class="form-control" id="" placeholder="S" style="width: 80px;">
+
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer mb-9">
+                    <button type="submit" class="btn btn-danger" name="youtubelink" value="youtubelink" data-bs-dismiss="modal">submit</button>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <br> {% endfor %}
+
+    </div>
+
+
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 </body>
+
 </html>
