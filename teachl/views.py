@@ -75,7 +75,7 @@ def classpass(respones,cod):
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod)
                          }
-               return render(respones, "auto.html",{'context':context})
+               return render(respones, "classwork.html",{'context':context})
 
 def classwork(requset,cod):
      tk = requset.session['mail']

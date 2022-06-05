@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.messages.api import error
 from django.contrib import messages 
 
+global popupurl
 
 def userp(response):
     email = response.session['mail']
@@ -43,14 +44,45 @@ def createclass(request):
 
 
 
-def classpass(respones,cod):
-     tk = respones.session['mail']
+def classwork(requset,cod):
+     tk = requset.session['mail']
      if user_info.objects.filter(Email=tk).exists():
-          if sroominfo.objects.filter(url=cod).exists():
-               context={
+          if roominfo.objects.filter(url=cod).exists():
+               
+               rcod=roominfo.objects.get(url=cod)
+               print('\n',rcod.Roomcode,'\n')
+               if not popupurl== '0':
+                    context={
+                         'url':cod,
+                         'rcode':rcod.Roomcode,
+                         "pdf":contends.objects.filter(RoomCode=cod),
+                         "ls":code.objects.filter(RoomCode=cod),
+                         "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "link":otherlink.objects.filter(RoomCode=cod),
+                         "popuplink":popupurl
+                         }
+               else:
+                    context={
+                         'url':cod,
+                         'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod)
                          }
-               return render(respones, "innerdatas.html",{'context':context})
+               return render(requset, "classwork.html",{'context':context})
+
+def prople(requset,cod):
+     tk = requset.session['mail']
+     if user_info.objects.filter(Email=tk).exists():
+          if roominfo.objects.filter(url=cod).exists():
+               rcod=roominfo.objects.get(url=cod)
+               print(sroominfo.objects.filter(Roomcode=cod))
+               context={
+                         'url':cod,
+                         'rcode':rcod,
+                         "student":sroominfo.objects.filter(Roomcode=rcod.Roomcode),
+
+
+                         }
+               return render(requset, "people.html",{'context':context})

@@ -7,5 +7,5 @@ urlpatterns = [
     path('logout',logout,name="logout"),
     path('create',createclass_form),
     path('createc',createclass),
-    path('m/<str:cod>/',classpass),
+    path('m/<str:cod>/',classwork),
 ]
