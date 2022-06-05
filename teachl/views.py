@@ -64,7 +64,7 @@ def classpass(respones,cod):
                          "ls":code.objects.filter(RoomCode=cod),
                          "assment":assigmentdetals.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
-                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
+                         "sassigment":assigmnet.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod),
                          "popuplink":popupurl
                          }
@@ -75,7 +75,7 @@ def classpass(respones,cod):
                          "assment":assigmentdetals.objects.filter(RoomCode=cod),
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
-                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
+                         "sassigment":assigmnet.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod)
                          }
@@ -97,7 +97,7 @@ def classwork(requset,cod):
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
-                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
+                         "sassigment":assigmnet.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod),
                          "popuplink":popupurl,
                          "assment":assigmentdetals.objects.filter(RoomCode=cod)
@@ -108,7 +108,7 @@ def classwork(requset,cod):
                     context={
                          'url':cod,
                          'rcode':rcod,
-                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
+                         "sassigment":assigmnet.objects.filter(RoomCode=cod),
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
