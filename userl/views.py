@@ -162,20 +162,7 @@ def uploader(respnce,cod,tcod):
                global popupurl
                popupurl= gauth.GetAuthUrl()
                return HttpResponseRedirect(gauth.GetAuthUrl())
-               '''
-               for f in pdffiles:
-                    drivepassway=tempuploader(uploadfile=f)
-                    drivepassway.save()
-                    ls=code.objects.get(UniqCode=tcod)
-
-                    driveuploader(ls,drivepassway.uploadfile.path,f.name)
-
-                    pdf= tempuploader.objects.all() #pdf delete
-                    for pd in pdf:
-                        pd.delete()
-               return HttpResponseRedirect(respnce.META.get('HTTP_REFERER'))
-                 '''
-
+             
 
 
 
