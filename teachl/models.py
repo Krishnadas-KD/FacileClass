@@ -71,6 +71,20 @@ class otherlink(models.Model):
     UniqCode=models.CharField(max_length=10)
     link = models.CharField(max_length=500)
     date=models.DateTimeField(auto_now_add=True)
+#assiment  presntformate
+class assigmentdetals(models.Model):
+    assigname=models.CharField(max_length=200)
+    assigdec=models.CharField(max_length=200)
+    RoomCode=models.CharField(max_length=7)
+    UniqCode=models.CharField(max_length=10)
+    date=models.DateTimeField(auto_now_add=True)
+
+    duedate=models.DateTimeField(max_length=200)
+    totalm=models.CharField(max_length=200)
+
+
+
+
 
 class examdetails(models.Model):
     tmail=models.CharField(max_length=50)

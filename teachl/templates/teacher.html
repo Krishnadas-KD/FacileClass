@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <title> facileclass </title>
@@ -107,29 +108,29 @@
             <i class="fa fa-plus my-float"></i>
         </a>
         <div class="cardiv">
-                {% for mm in context.ls %}
-                <div class="card">
-                    <a href="m/{{mm.url}}">
-                        <div class="box">
-                            <div class="img">
-                                <img src="{% static 'img/Subject.jpg' %}" alt="">
-                            </div>
-                            <h2>{{mm.roomname}}</h2>
-                            <p> {{mm.roomdesc}}</p>
+            {% for mm in context.ls %}
+            <div class="card">
+                <a href="c/{{mm.url}}">
+                    <div class="box">
+                        <div class="img">
+                            <img src="{% static 'img/Subject.jpg' %}" alt="">
                         </div>
-                    </a>
-                </div>
-                {% empty %}
-                <h4>No rooms found Create new</h4>
-            {% endfor %}
+                        <h2>{{mm.roomname}}</h2>
+                        <p> {{mm.roomdesc}}</p>
+                    </div>
+                </a>
             </div>
+            {% empty %}
+            <h4>No rooms found Create new</h4>
+            {% endfor %}
+        </div>
 
     </section>
-    
+
     <script>
         let sidebar = document.querySelector(".sidebar");
         let sidebarBtn = document.querySelector(".sidebarBtn");
-        sidebarBtn.onclick = function () {
+        sidebarBtn.onclick = function() {
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");

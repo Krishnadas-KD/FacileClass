@@ -62,6 +62,7 @@ def classpass(respones,cod):
                          'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
+                         "assment":assigmentdetals.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod),
                          "popuplink":popupurl
@@ -70,6 +71,7 @@ def classpass(respones,cod):
                     context={
                          'url':cod,
                          'rcode':rcod,
+                         "assment":assigmentdetals.objects.filter(RoomCode=cod),
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -79,9 +81,11 @@ def classpass(respones,cod):
 
 def classwork(requset,cod):
      tk = requset.session['mail']
+     print("hello")
      if teacher_info.objects.filter(Email=tk).exists():
           if roominfo.objects.filter(url=cod).exists():
-               
+               print("hello")
+               print(assigmentdetals.objects.filter(RoomCode=cod))
                rcod=roominfo.objects.get(url=cod)
                print('\n',rcod.Roomcode,'\n')
                if not popupurl== '0':
@@ -92,16 +96,20 @@ def classwork(requset,cod):
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod),
-                         "popuplink":popupurl
+                         "popuplink":popupurl,
+                         "assment":assigmentdetals.objects.filter(RoomCode=cod)
                          }
                else:
+                    print("hello")
+                    print(assigmentdetals.objects.filter(RoomCode=cod))
                     context={
                          'url':cod,
                          'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
-                         "link":otherlink.objects.filter(RoomCode=cod)
+                         "link":otherlink.objects.filter(RoomCode=cod),
+                          "assment":assigmentdetals.objects.filter(RoomCode=cod)
                          }
                return render(requset, "classwork.html",{'context':context})
 
@@ -212,7 +220,7 @@ def uploader(respnce,cod,tcod):
                     con=contends(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=f.uploadfile.name) #drive file  id storing
                     con.save()
 
-               return redirect('/teachl/m/'+cod)
+               return redirect('/teachl/c/'+cod)
           except FileNotFoundError:
                global popupurl
                popupurl= gauth.GetAuthUrl()
@@ -361,3 +369,23 @@ def addstd(request,cod):
      return HttpResponse("<h1>added<h1>")
 
 
+
+def addassgment(responce,cod):
+     if responce.method == 'POST':
+          if responce.POST.get("addit"):
+               Tpoicname=responce.POST.get("assigmentname")
+               Tpoicdisc=responce.POST.get("assigmentdesc")
+               print(Tpoicname)
+               due=responce.POST.get("due")
+               print(due)
+               p=assigmentgenaratecode()
+               ls=assigmentdetals(RoomCode=cod,assigname=Tpoicname,assigdec=Tpoicdisc,UniqCode=p,duedate=due,totalm=20)
+               ls.save()
+
+               return HttpResponseRedirect(responce.META.get('HTTP_REFERER'))
+def assigmentgenaratecode():
+     n=10
+     while True:
+          code1=''.join(secrets.choice(string.ascii_letters) for x in range(n))
+          if assigmentdetals.objects.filter(UniqCode=code1).count() == 0:
+               return code1
