@@ -153,7 +153,7 @@ def uploader(respnce,cod,tcod):
                     print("hi2")
                     gfile.Upload()
                     print("updone")
-                    con=assigmnet(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=user_info.objects.get(Email=respnce.session['mail']).Name,totalm="20") #drive file  id storing
+                    con=assigmnet(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=user_info.objects.get(Email=respnce.session['mail']).Name,totalm="20",mark="none") #drive file  id storing
                     con.save()
 
                return redirect('/studl/c/'+cod)
@@ -197,7 +197,7 @@ def callback(request):
                   'role':'reader',
                   'type':'anyone'
              })
-          con=assigmnet(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=user_info.objects.get(Email=request.session['mail']).Name,totalm="20") #drive file  id storing
+          con=assigmnet(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,pdf=gfile.get('id'),name=user_info.objects.get(Email=request.session['mail']).Name,totalm="20",mark="none") #drive file  id storing
           con.save()      
         reurl='/studl/c/'+urladder
         return redirect(reurl)

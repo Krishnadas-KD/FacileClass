@@ -394,10 +394,10 @@ def assigmentgenaratecode():
           if assigmentdetals.objects.filter(UniqCode=code1).count() == 0:
                return code1
 
-def markupdate(request,cod,pdfcode):
+def markupdate(request,cod,tcod,pdfcode):
      print(cod)
      if request.method == 'POST':
-          assigmnet.objects.filter(UniqCode=cod,pdf=pdfcode).update(mark=request.POST.get("mark"))
+          assigmnet.objects.filter(UniqCode=tcod,pdf=pdfcode).update(mark=request.POST.get("mark"))
           print(request.POST.get("mark"))
           return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
