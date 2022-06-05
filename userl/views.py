@@ -7,10 +7,12 @@ from django.contrib.messages.api import error
 from datetime import datetime
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-
+import json
 from django.contrib import messages
 
+GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'sclient_secrets.json'
 gauth=GoogleAuth()
+
 global popupurl
 popupurl='0'
 def userp(response):
@@ -90,6 +92,7 @@ def prople(requset,cod):
      print('\n',tk,'\n')
      if user_info.objects.filter(Email=tk).exists():
           if roominfo.objects.filter(url=cod).exists():
+               
                rcod=roominfo.objects.get(url=cod)
                print(sroominfo.objects.filter(Roomcode=cod))
                context={
@@ -125,7 +128,7 @@ def uploader(respnce,cod,tcod):
                for pd in dpdf:
                     pd.delete()
                for f in pdffiles: 
-                    
+
                     drivepassway=tempuploader(uploadfile=f,tcode=tcod) #storing the multiple pdf in temp uploader
                     drivepassway.save()
           try:

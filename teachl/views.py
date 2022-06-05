@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 import string
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-
+import json
 from django.contrib import messages
 
 gauth=GoogleAuth()
@@ -188,7 +188,7 @@ def uploader(respnce,cod,tcod):
                for pd in dpdf:
                     pd.delete()
                for f in pdffiles: 
-                    
+
                     drivepassway=tempuploader(uploadfile=f,tcode=tcod) #storing the multiple pdf in temp uploader
                     drivepassway.save()
           try:
