@@ -192,7 +192,7 @@ def callback(request):
      if request.method == 'GET':
         cod = request.GET.get('code')
         if cod == None:
-          return render(request,'callback.html')
+          return render(request,'scallback.html')
         gauth.Auth(cod)
         gauth.SaveCredentialsFile('creds.json')
         drive = GoogleDrive(gauth) 
@@ -215,7 +215,7 @@ def callback(request):
           con.save()      
         reurl='/studl/c/'+urladder
         return redirect(reurl)
-     return render(request,"callback.html")
+     return render(request,"scallback.html")
 
      
 
