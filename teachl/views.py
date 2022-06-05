@@ -184,11 +184,14 @@ def uploader(respnce,cod,tcod):
           
           #pdf Upload
           if respnce.POST.get('pdfupload'):
+               
                pdffiles=respnce.FILES.getlist('pdffiles') #multi pdf upload
+               print(pdffiles)
                dpdf=tempuploader.objects.all()
                for pd in dpdf:
                     pd.delete()
                for f in pdffiles: 
+                    
                     drivepassway=tempuploader(uploadfile=f,tcode=tcod) #storing the multiple pdf in temp uploader
                     drivepassway.save()
           try:
