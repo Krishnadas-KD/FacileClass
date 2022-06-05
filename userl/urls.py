@@ -10,5 +10,6 @@ urlpatterns = [
     path('c/<str:cod>/',classwork),
     path('p/<str:cod>/',prople),
     path('c/<str:cod>/',classwork),
+    path('scallback',callback),
     path('c/<str:cod>/<str:tcod>/addassigment',uploader),
 ]
