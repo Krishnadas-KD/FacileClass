@@ -13,7 +13,7 @@ class sroominfo(models.Model):
 
 
 class assigmnet(models.Model):
-    RoomCode=models.CharField(max_length=7)
+    RoomCode=models.CharField(max_length=20)
     UniqCode=models.CharField(max_length=10)
     pdf = models.CharField(max_length=500)
     date=models.DateTimeField(auto_now_add=True)

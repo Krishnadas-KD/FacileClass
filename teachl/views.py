@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect 
-from django.http import  HttpResponseRedirect,HttpResponse
+from django.http import  HttpResponseRedirect,HttpResponse, JsonResponse
 import string
 from main.models import *
 from teachl.models import *
@@ -64,6 +64,7 @@ def classpass(respones,cod):
                          "ls":code.objects.filter(RoomCode=cod),
                          "assment":assigmentdetals.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod),
                          "popuplink":popupurl
                          }
@@ -74,6 +75,7 @@ def classpass(respones,cod):
                          "assment":assigmentdetals.objects.filter(RoomCode=cod),
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
+                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod)
                          }
@@ -95,6 +97,7 @@ def classwork(requset,cod):
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
+                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
                          "link":otherlink.objects.filter(RoomCode=cod),
                          "popuplink":popupurl,
                          "assment":assigmentdetals.objects.filter(RoomCode=cod)
@@ -105,6 +108,7 @@ def classwork(requset,cod):
                     context={
                          'url':cod,
                          'rcode':rcod,
+                         "sassigment":assigmentdetals.objects.filter(RoomCode=cod),
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -389,3 +393,13 @@ def assigmentgenaratecode():
           code1=''.join(secrets.choice(string.ascii_letters) for x in range(n))
           if assigmentdetals.objects.filter(UniqCode=code1).count() == 0:
                return code1
+
+def markupdate(request,cod,pdfcode):
+     print(cod)
+     if request.method == 'POST':
+          assigmnet.objects.filter(UniqCode=cod,pdf=pdfcode).update(mark=request.POST.get("mark"))
+          print(request.POST.get("mark"))
+          return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+    

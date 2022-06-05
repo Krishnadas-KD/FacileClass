@@ -75,8 +75,8 @@ class otherlink(models.Model):
 class assigmentdetals(models.Model):
     assigname=models.CharField(max_length=200)
     assigdec=models.CharField(max_length=200)
-    RoomCode=models.CharField(max_length=7)
-    UniqCode=models.CharField(max_length=10)
+    RoomCode=models.CharField(max_length=20)
+    UniqCode=models.CharField(max_length=20)
     date=models.DateTimeField(auto_now_add=True)
 
     duedate=models.DateTimeField(max_length=200)

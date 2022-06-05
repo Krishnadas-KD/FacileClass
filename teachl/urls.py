@@ -14,6 +14,7 @@ urlpatterns = [
     path('p/<str:cod>/',prople),
 
     path('c/<str:cod>/<str:tcod>/add',uploader),
+    path('c/<str:cod>/<str:tcod>/<str:pdfcode>/addmark',markupdate),
     path('c/<str:cod>/tadder',topicadder),
     path('c/<str:cod>/addassigment',addassgment),
     path('callback',callback),
