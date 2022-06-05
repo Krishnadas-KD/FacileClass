@@ -12,7 +12,7 @@ urlpatterns = [
     path('p/<str:cod>/',prople),
     path('m/<str:cod>/<str:tcod>/add',uploader),
     path('c/<str:cod>/<str:tcod>/add',uploader),
-    path('m/<str:cod>/tadder',topicadder),
+    path('c/<str:cod>/tadder',topicadder),
     path('callback',callback),
     path("m/<str:cod>/addstd",addstd),
     path('m/<str:cod>/peoples',peopl),
