@@ -1,66 +1,80 @@
-.bgdiv{
+.bgdiv {
     background-color: rgb(41, 56, 48);
     border-radius: 10px;
     margin-top: 10px;
     height: 4cm;
-
 }
-.clname{
+
+.clname {
     color: #ffffff;
     font-size: 33px;
-    font-family: 'Google Sans',Roboto,Arial,sans-serif ;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
     padding: 0px 38px 0px 0px;
 }
-.date{
+
+.date {
     color: #ffffff;
-    font-family: 'Google Sans',Roboto,Arial,sans-serif ;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
     padding: 0px 32px 0px 0px;
 }
-.headname{
+
+.headname {
     padding-top: 70px;
     padding-left: 40px;
-    
 }
 
-.cre{
+.cre {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.dropdown-item{
-    font-size:large;
-    
+
+.dropdown-item {
+    font-size: large;
 }
 
-.items{
-   padding-left: 25px;
+.items {
+    padding-left: 25px;
 }
 
-.title{
-  
-}
+.title {}
 
-.titleimg{
+.titleimg {
     margin-left: 10px;
 }
-.upfile{
-   
+
+.upfile {
     margin-top: 10px;
 }
 
-.topic{
+.topic {
     width: 15cm;
     height: 50px;
 }
-.topicicon{
+
+.topicicon {
     float: left;
 }
-.top{
+
+.top {
     padding-left: 30px;
 }
 
-.ssss{
-    padding-left:20px;
+.ssss {
+    padding-left: 20px;
 }
-.card{
+
+.card {
     margin-left: 50px;
     margin-right: 50px;
+}
+
+.pdf {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 20px;
+    background: #ffffff;
+    box-shadow: 5px 5px 10px;
+    border-radius: 10px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 200px;
 }

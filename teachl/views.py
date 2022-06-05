@@ -5,7 +5,7 @@ from main.models import *
 from teachl.models import *
 from userl.models import *
 from django.shortcuts import redirect, render
-
+from main.mailsender import *
 from django.http import HttpResponseRedirect
 import string
 from pydrive.auth import GoogleAuth
@@ -97,7 +97,7 @@ def classwork(requset,cod):
                else:
                     context={
                          'url':cod,
-                         'rcode':rcod.Roomcode,
+                         'rcode':rcod,
                          "pdf":contends.objects.filter(RoomCode=cod),
                          "ls":code.objects.filter(RoomCode=cod),
                          "yt":youtubelink.objects.filter(RoomCode=cod),
@@ -109,32 +109,21 @@ def prople(requset,cod):
      tk = requset.session['mail']
      if teacher_info.objects.filter(Email=tk).exists():
           if roominfo.objects.filter(url=cod).exists():
-               
                rcod=roominfo.objects.get(url=cod)
-               print('\n',rcod.Roomcode,'\n')
-               if not popupurl== '0':
-                    context={
+               print(sroominfo.objects.filter(Roomcode=cod))
+               context={
                          'url':cod,
-                         'rcode':rcod.Roomcode,
-                         "pdf":contends.objects.filter(RoomCode=cod),
-                         "ls":code.objects.filter(RoomCode=cod),
-                         "yt":youtubelink.objects.filter(RoomCode=cod),
-                         "link":otherlink.objects.filter(RoomCode=cod),
-                         "popuplink":popupurl
-                         }
-               else:
-                    context={
-                         'url':cod,
-                         'rcode':rcod.Roomcode,
-                         "pdf":contends.objects.filter(RoomCode=cod),
-                         "ls":code.objects.filter(RoomCode=cod),
-                         "yt":youtubelink.objects.filter(RoomCode=cod),
-                         "link":otherlink.objects.filter(RoomCode=cod)
+                         'rcode':rcod,
+                         "student":sroominfo.objects.filter(Roomcode=rcod.Roomcode),
+
+
                          }
                return render(requset, "people.html",{'context':context})
 def topicadder(responce,cod):
      if responce.method == 'POST':
+          print(responce.POST.get("topicname"))
           if responce.POST.get("tpadd"):
+               print("hellow")
                Tpoicname=responce.POST.get("topicname")
                Tpoicdisc=responce.POST.get("description")
                p=genaratecode()
@@ -338,17 +327,30 @@ def addstd(request,cod):
      rurl = ob.values('url')
      rdesc = ob.values('roomdesc')
      if request.method == 'POST':
-          name = request.POST.get('stdname')
           email = request.POST.get('stdmail')
+          print(email)
+          print("hellow")
           if not admin_info.objects.filter(Email=email).exists():
                if not teacher_info.objects.filter(Email=email).exists():
                     if not user_info.objects.filter(Email=email).exists():
-                         ps = user_info(Email=email,Name=name,token=gencode())
+                         ps = user_info(Email=email,token=gencode())
                          ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc)
                          ts.save()
                          ps.save()
+                         SUBJECT = "Activate your Account"
+                         TEXT = " Follow the link to activate your Facileclass Account "
+                         message = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
+                         l = mailsender(ps.token,email,message)
+                         messages.error(request,"Student Added Successfully")
+                         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
                     else:
-                         messages.error(request,"Email already exists")
+                         if sroominfo.objects.filter(Email=email,Roomcode=rcode).count() == 0:
+                              ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc)
+                              ts.save()
+                              messages.error(request,"Student Added Successfully")
+                              return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+                         else:
+                              messages.error(request,"Email already exists")
                          return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
                else:
                     messages.error(request,"Email already exists")
@@ -359,13 +361,3 @@ def addstd(request,cod):
      return HttpResponse("<h1>added<h1>")
 
 
-def peopl(requset,cod):
-     return render(requset,'people.html')
-
-
-def mainpage(request):
-     return render(request,'auto.html')
-def classpeopleadd(request):
-     return render(request,'cpeople.html')
-def classworkadd(request):
-     return render(request,'classwork.html')
