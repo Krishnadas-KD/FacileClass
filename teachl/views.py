@@ -13,6 +13,7 @@ from pydrive.drive import GoogleDrive
 import json
 from django.contrib import messages
 
+GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'client_secrets.json'
 gauth=GoogleAuth()
 
 global popupurl

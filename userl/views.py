@@ -10,7 +10,7 @@ from pydrive.drive import GoogleDrive
 import json
 from django.contrib import messages
 
-GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'sclient_secrets.json'
+
 gauth=GoogleAuth()
 
 global popupurl
@@ -114,7 +114,7 @@ def uploader(respnce,cod,tcod):
           duedate=assigmentdetals.objects.get(UniqCode=tcod).duedate
           present=datetime.now()
          
-
+          GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'client_secrets.json'
           if respnce.POST.get('pdfupload'):
                print("heelo")
                pdffiles=respnce.FILES.getlist('pdffiles') #multi pdf upload
