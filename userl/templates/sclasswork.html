@@ -109,8 +109,19 @@
         }
     </style>
 </head>
+<script>
+    function removeb(){
+    var a={{context.presntformate}};
+    var b={{mm.duedate}};
+    alert(a);
+    if(a>b)
+    {
+        document.getElementById("submitassigment").style.display = "None";
+    }
+    }
 
-<body>
+</script>
+<body onload="removeb()">
     <script>
         { %
             if context.popuplink %
@@ -187,14 +198,15 @@
             <div id="demo1{{mm.UniqCode}}" class="collapse">
                 <div class="card-body "> <label for="floatingSelect">{{mm.assigdec}}<br> due date: {{mm.duedate}}</label></div>
                 <div class="card-footer">
-                    {% if context.presntformate >= mm.duedate %} Due up {% else %}
-                    <a href="#" style="color: #fff; " data-bs-toggle="modal" data-bs-target="#myModal4">
-                        <button type="button" class="btn btn-dark " data-bs-toggle="dropdown" style="border-radius:25px;" data-bs-toggle="modal" data-bs-target="#myModal4">
+
+
+                    {{context.presntformate}} {{mm.duedate}} {% if context.presntformate > mm.duedate %} Due up {% else %} <a href="#" style="color: #fff; " data-bs-toggle="modal" data-bs-target="#myModal4">
+                        <button  type="button" class="btn btn-dark " id="submitassigment" data-bs-toggle="dropdown" style="border-radius:25px;" data-bs-toggle="modal" data-bs-target="#myModal4">
                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                </svg>
                 <span class="cre"> Upload</span>
-                   </button></a>{% endif %}
+                   </button></a>{%endif%}
 
 
 
