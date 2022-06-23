@@ -25,7 +25,7 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-###hosted in heroku
+## hosted in heroku
 https://facileclass.herokuapp.com/
 ## Tools used
 * Django
