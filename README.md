@@ -27,11 +27,11 @@ python manage.py runserver
 ##hosted in heroku
 https://facileclass.herokuapp.com/
 ## Tools used
-Django
-sqlite
-Drive api(to upload file to google drive)
-Bootstrap
-Html
-CSS
-javascript
-AJAX
+*Django
+*sqlite
+*Drive api(to upload file to google drive)
+*Bootstrap
+*Html
+*CSS
+*javascript
+*AJAX
