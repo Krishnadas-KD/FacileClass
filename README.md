@@ -1,7 +1,7 @@
 # LMS
 My final year college project with <br>
 [@Nihaj](https://github.com/NHJ-K) <br>
-[@Yaseen](https://github.com/mhdyazinkc)<br>
+[@Yaseen](https://github.com/muhammed-yaseen-kc)<br>
 [@Nakhilesh](https://github.com/nakhileship)<br>
 ## Setup Instructions
 
