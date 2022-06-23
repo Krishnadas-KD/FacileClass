@@ -7,6 +7,7 @@ My final year college project with <br>
 
 ### Setup Virtual Environment
 
+
 ```bash
 pip install virtualenv
 py -m venv env
@@ -23,3 +24,14 @@ pip install -r requirements.txt
 ```bash
 python manage.py runserver
 ```
+##hosted in heroku
+https://facileclass.herokuapp.com/
+## Tools used
+Django
+sqlite
+Drive api(to upload file to google drive)
+Bootstrap
+Html
+CSS
+javascript
+AJAX
