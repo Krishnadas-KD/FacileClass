@@ -30,6 +30,7 @@ class roominfo(models.Model):
     Email=models.CharField(max_length=50)
     Roomcode=models.CharField(default=gencode,max_length=7,primary_key=True)
     roomname=models.CharField(max_length=100)
+    roomimg=models.CharField(max_length=100)
     url=models.CharField(default=urlcode,max_length=15)
     roomdesc=models.CharField(max_length=200)
     date=models.DateTimeField(auto_now_add=True)

@@ -9,6 +9,7 @@ class sroominfo(models.Model):
     Roomcode=models.CharField(max_length=7)
     roomname=models.CharField(max_length=100)
     url=models.CharField(max_length=15)
+    roomimg=models.CharField(max_length=100)
     roomdesc=models.CharField(max_length=200)
 
 

@@ -63,8 +63,10 @@ def login(response):
 def activation(request,tk):
     print(tk[-6:])
     if tk[-6:] == 'forget':
+        print(tk[0:])
         if user_info.objects.filter(token=tk[:-6]).exists():
-            request.session['mail'] = teacher_info.objects.get(token=tk[:-6]).Email
+            request.session['mail'] = user_info.objects.get(token=tk[:-6]).Email
+            return render(request,"fpass.html")
         elif teacher_info.objects.filter(token=tk[:-6]).exists():
             request.session['mail'] = teacher_info.objects.get(token=tk[:-6]).Email
             return render(request,"fpass.html")

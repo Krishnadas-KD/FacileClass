@@ -12,7 +12,7 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import json
 from django.contrib import messages
-
+import random
 GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'client_secrets.json'
 gauth=GoogleAuth()
 
@@ -21,9 +21,12 @@ popupurl='0'
 def teacp(response):
      try:
           email = response.session['mail']
+          name=teacher_info.objects.get(Email=email)
+          print(name.Name)
           ls = roominfo.objects.filter(Email=email)
           context = {
-               'ls':ls
+               'ls':ls,
+               'name':name.Name
           }
           return render(response,"teacher.html",{'context' : context})
      except KeyError:
@@ -45,7 +48,9 @@ def createclass(request):
         if request.POST.get('add'):
             classname = request.POST.get('clsname')
             descr = request.POST.get('desc')
-            to = roominfo(Email=mail,roomname=classname,roomdesc=descr)
+            rn=random.randint(1,6)
+            img="/static/img/img"+str(rn)+".jpg"
+            to = roominfo(Email=mail,roomname=classname,roomdesc=descr,roomimg=img)
             to.save()
             return redirect('/')
 
@@ -363,6 +368,7 @@ def addstd(request,cod):
      rname = ob.values('roomname')
      rurl = ob.values('url')
      rdesc = ob.values('roomdesc')
+     img=ob.values('roomimg')
      if request.method == 'POST':
           email = request.POST.get('stdmail')
           print(email)
@@ -371,18 +377,18 @@ def addstd(request,cod):
                if not teacher_info.objects.filter(Email=email).exists():
                     if not user_info.objects.filter(Email=email).exists():
                          ps = user_info(Email=email,token=gencode())
-                         ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc)
+                         ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc,roomimg=img)
                          ts.save()
                          ps.save()
                          SUBJECT = "Activate your Account"
-                         TEXT = " Follow the link to activate your Facileclass Account "
+                         TEXT = " Follow the link to activate your Facileclass Account\n"
                          message = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
                          l = mailsender(ps.token,email,message)
                          messages.error(request,"Student Added Successfully")
                          return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
                     else:
                          if sroominfo.objects.filter(Email=email,Roomcode=rcode).count() == 0:
-                              ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc)
+                              ts = sroominfo(Email=email,Roomcode=rcode,roomname=rname,url=rurl,roomdesc=rdesc,roomimg=img)
                               ts.save()
                               messages.error(request,"Student Added Successfully")
                               return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

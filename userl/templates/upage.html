@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> facileclass </title>
+    <title> Facileclass </title>
     <link rel="stylesheet" href="{% static 'tpage.css' %}">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -17,69 +17,58 @@
         <div class="logo-details">
             <i class='bx bxs-school'></i>
 
-            <span class="logo_name">facileclass</span>
+            <span class="logo_name">Facileclass</span>
         </div>
         <ul class="nav-links">
             <li>
                 <a href="#" class="active">
                     <i class='bx bx-grid-alt'></i>
-                    <span class="links_name"></span>
+                    <span class="links_name">Home</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-box'></i>
-                    <span class="links_name">Bbbb</span>
+                    <span class="links_name">Grade</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-list-ul'></i>
-                    <span class="links_name">Cccc</span>
+                    <span class="links_name">Attendance</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">Dddd</span>
+                    <span class="links_name">Question paper</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-coin-stack'></i>
-                    <span class="links_name">Eeee</span>
+                    <span class="links_name">Facility</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-book-alt'></i>
-                    <span class="links_name">Ffff</span>
+                    <span class="links_name">Complaint</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-user'></i>
-                    <span class="links_name">Gggg</span>
+                    <span class="links_name">About</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-message'></i>
-                    <span class="links_name">Hhhh</span>
+                    <span class="links_name">Contact</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-heart'></i>
-                    <span class="links_name">Iiii</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Jjjj</span>
-                </a>
-            </li>
+
             <li class="log_out">
                 <a href="logout">
                     <i class='bx bx-log-out'></i>
@@ -99,12 +88,12 @@
                 <i class='bx bx-search'></i>
             </div>
             <div class="profile-details">
-                <img src="{% static 'img/user.jpg' %}" alt="">
-                <span class="admin_name">XA12</span>
-                <i class='bx bx-chevron-down'></i>
+                <img src="{% static 'img/userg.jpg' %}" alt="">
+                <span class="admin_name">{{context.name}}(Student)</span>
+
             </div>
         </nav>
-        <a href="/teachl/create" class="float">
+        <a href="/studl/create" class="float">
             <i class="fa fa-plus my-float"></i>
         </a>
         <div class="cardiv">
@@ -113,7 +102,7 @@
                 <a href="c/{{mm.url}}">
                     <div class="box">
                         <div class="img">
-                            <img src="{% static 'img/subject.png' %}" alt="">
+                            <img src="{{mm.roomimg}}" alt="">
                         </div>
                         <h2>{{mm.roomname}}</h2>
                         <p> {{mm.roomdesc}}</p>

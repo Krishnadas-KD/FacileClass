@@ -18,8 +18,10 @@ popupurl='0'
 def userp(response):
     email = response.session['mail']
     ls = sroominfo.objects.filter(Email=email)
+    ds=user_info.objects.get(Email=email)
     context = {
-        'ls':ls
+        'ls':ls,
+        'name':ds.Name
     }
     return render(response,"upage.html",{'context':context})
     
@@ -40,7 +42,7 @@ def createclass(request):
             classname = request.POST.get('clsname')
             if roominfo.objects.filter(Roomcode=classname).exists():
                 ls=roominfo.objects.get(Roomcode=classname)
-                to = sroominfo(Email=mail,Roomcode=ls.Roomcode,roomname=ls.roomname,url=ls.url,roomdesc=ls.roomdesc)
+                to = sroominfo(Email=mail,Roomcode=ls.Roomcode,roomname=ls.roomname,url=ls.url,roomdesc=ls.roomdesc,roomimg=ls.roomimg)
                 to.save()
             else:
                 messages.error(request,'Incorrept code')
@@ -70,6 +72,7 @@ def classwork(requset,cod):
                          "presntformate":presnt,
                          "upload":assigmnet.objects.filter(RoomCode=cod),
                          "assment":assigmentdetals.objects.filter(RoomCode=cod),
+                         "st":"false false",
                          "popuplink":popupurl
                          }
                else:
@@ -82,7 +85,8 @@ def classwork(requset,cod):
                          "yt":youtubelink.objects.filter(RoomCode=cod),
                          "upload":assigmnet.objects.filter(RoomCode=cod),
                          "assment":assigmentdetals.objects.filter(RoomCode=cod),
-                         "link":otherlink.objects.filter(RoomCode=cod)
+                         "link":otherlink.objects.filter(RoomCode=cod),
+                         "st":"false false"
                          }
                return render(requset, "sclasswork.html",{'context':context})
 
@@ -145,7 +149,7 @@ def uploader(respnce,cod,tcod):
                pdffile=tempuploader.objects.all()
                for f in pdffile:
                     print("hi")
-                    ls=assigmnet.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
+                    ls=assigmentdetals.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
                     parernt_id=folderspcifing(ls,drive)
                     pathfile= f.uploadfile.path
                     gfile = drive.CreateFile({'parents': [{'id': parernt_id}]})

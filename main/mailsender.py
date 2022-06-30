@@ -2,6 +2,7 @@ import smtplib
 from .Dmail import *
 from lmst.settings import WEBURL
 def mailsender(res,Email,sub):
+    print(res)
     smtpserver=smtplib.SMTP("smtp.gmail.com",587)
     smtpserver.ehlo()
     smtpserver.starttls()
