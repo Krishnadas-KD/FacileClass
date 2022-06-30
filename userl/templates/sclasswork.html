@@ -110,17 +110,24 @@
     </style>
 </head>
 <script>
-    function removeb(){
-    var a={{context.presntformate}};
-    var b={{mm.duedate}};
-    alert(a);
-    if(a>b)
-    {
-        document.getElementById("submitassigment").style.display = "None";
+    function removeb() {
+        var a = {
+            {
+                context.presntformate
+            }
+        };
+        var b = {
+            {
+                mm.duedate
+            }
+        };
+        alert(a);
+        if (a > b) {
+            document.getElementById("submitassigment").style.display = "None";
+        }
     }
-    }
-
 </script>
+
 <body onload="removeb()">
     <script>
         { %
@@ -200,14 +207,53 @@
                 <div class="card-footer">
 
 
-                    {{context.presntformate}} {{mm.duedate}} {% if context.presntformate < mm.duedate %} Due up {% else %} <a href="#" style="color: #fff; " data-bs-toggle="modal" data-bs-target="#myModal4">
-                        <button  type="button" class="btn btn-dark " id="submitassigment" data-bs-toggle="dropdown" style="border-radius:25px;" data-bs-toggle="modal" data-bs-target="#myModal4">
+                    {{context.presntformate}} {{mm.duedate}} {% if context.presntformate
+                    < mm.duedate %} Due up {% else %} <a href="#" style="color: #fff; " data-bs-toggle="modal" data-bs-target="#myModal4">
+                        <button type="button" class="btn btn-dark " id="submitassigment" data-bs-toggle="dropdown" style="border-radius:25px;" data-bs-toggle="modal" data-bs-target="#myModal4">
                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                </svg>
                 <span class="cre"> Upload</span>
                    </button></a>{% endif %}
 
+                        <div class="modal" id="myModal4">
+                            <div class="modal-dialog modal-fullscreen">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h2 class="modal-title">Pdf</h2>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <form action="{{mm.UniqCode}}/addassigment" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <!-- Modal body -->
+                                        <div class="container modal-body">
+
+                                            <div class="input-group mb-3 input-group-lg">
+                                                <span class="input-group-text">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                                      <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                                      <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                      <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                  </svg>
+                              </span>
+                                                <input type="file" accept=".pdf" class="form-control" name="pdffiles" placeholder="upload" required multiple>
+                                            </div>
+                                            <br>
+
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer mb-9">
+                                            <button type="submit" class="btn btn-danger" value="pdfupload" name="pdfupload" data-bs-dismiss="modal">submit</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
 
 
                 </div>
@@ -219,12 +265,12 @@
     
     </svg>
                     <h6> {{pd.Name}}</h6>
-                    <button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="" data-target="#mpdfloader"> Load
+                    <button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="" data-target="#mpdfloader{{pd.pdf}}"> Load
                 </div>
 
 
 
-                <div class="modal fade" id="mpdfloader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="mpdfloader{{pd.pdf}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
 
@@ -393,13 +439,13 @@
     {%endif%} {% endfor %} {%for l in context.link%} {% if mm.UniqCode == l.UniqCode %}
 
     <div class="pdf">
-        
+
         <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" style="padding-top: 20px;" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
                 <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
                 <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
               </svg>
-              <a href="{{l.link}}" target="_blank">
-        <button type="button" class="btn btn-primary video-btn"> Goto
+        <a href="{{l.link}}" target="_blank">
+            <button type="button" class="btn btn-primary video-btn"> Goto
 
                         </button></a>
         </a>
