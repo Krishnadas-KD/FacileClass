@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facileclass</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+</head>
+<script>
+    function startTimer(duration, display) {
+        var start = Date.now(),
+            diff,
+            minutes,
+            seconds;
+
+        function timer() {
+            // get the number of seconds that have elapsed since 
+            // startTimer() was called
+            diff = duration - (((Date.now() - start) / 1000) | 0);
+
+            // does the same job as parseInt truncates the float
+            minutes = (diff / 60) | 0;
+            seconds = (diff % 60) | 0;
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (diff <= 0) {
+                // add one second so that the count down starts at the full duration
+                // example 05:00 not 04:59
+                start = Date.now() + 1000;
+            }
+            if (minutes == 0 & seconds == 0) {
+                // we don't want to wait a full second before the timer starts
+                document.getElementById("submitoprpage").submit();
+            }
+        };
+        // we don't want to wait a full second before the timer starts
+        timer();
+        setInterval(timer, 1000);
+    }
+
+    window.onload = function() {
+        var fiveMinutes = 60 * 5,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
+</script>
+
+<body>
+    <main>
+        {% for error in messages %}
+        <div id="message2" class="alert alert-warning alert-dismissible " style="text-align: center;">
+            <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{error}}</strong>
+        </div>
+        {% endfor %}
+        <div class="box">
+            <div class="inner-box">
+                <div class="forms-wrap">
+                    <form id="submitoprpage" action="{% url 'optcheck' %}" method="POST" autocomplete="off" class="sign-in-form">
+                        {% csrf_token %}
+                        <div class="logo">
+                            <img src="{% static '/img/logo.png' %}" alt="easyclass" />
+                            <h4>facileclass</h4>
+                        </div>
+
+                        <div class="heading">
+                            <h2>Enter OTP </h2>
+
+                        </div>
+                        <span id="time"></span>
+                        <div class="input-wrap">
+                            <input type="password" minlength="4" class="input-field" autocomplete="off" required name="otp" id="exampleInputPassword1" />
+                            <label>OTP</label>
+                        </div>
+
+                        <input type="submit" name="passcreate" value="Submit" class="sign-btn" />
+                </div>
+                </form>
+
+
+            </div>
+
+            <div class="carousel">
+                <div class="images-wrapper">
+                    <img src="{% static '/img/image1.png' %}" class="image img-1 show" alt="" />
+                    <img src="{% static '/img/image2.png' %}" class="image img-2" alt="" />
+                    <img src="{% static '/img/image3.png' %}" class="image img-3" alt="" />
+                </div>
+
+                <div class="text-slider">
+                    <div class="text-wrap">
+                        <div class="text-group">
+                            <h2>Bring all of your learning resources together in one place and manage many classes from a single location.</h2>
+                            <h2>sit amet, consectetur adipiscing</h2>
+                            <h2>elit, sed do eiusmod tempor</h2>
+                        </div>
+                    </div>
+
+                    <div class="bullets">
+                        <span class="active" data-value="1"></span>
+                        <span data-value="2"></span>
+                        <span data-value="3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- Javascript file -->
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>

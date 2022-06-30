@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(admin_info)
 admin.site.register(teacher_info)
 admin.site.register(user_info)
+admin.site.register(tempotp)

@@ -5,7 +5,8 @@ from django.contrib import messages
 from django.contrib.messages.api import error
 from django.views.decorators.csrf import csrf_protect
 from .mailsender import *
-
+import requests
+import random
 # Create your views here.
 @csrf_protect
 def home(request):
@@ -15,6 +16,8 @@ def home(request):
 
 
 def login(response):
+
+
     if response.session._session:
         try:
             email = response.session['mail']
@@ -79,12 +82,40 @@ def activation(request,tk):
         request.session['mail'] = user_info.objects.get(token=tk).Email
         return render(request,"mailvar.html")
     return redirect('/')
+
 def forgetpassmailsend(request):
     if request.method == "POST":
         if request.POST.get("passmail"):
 
             mail = request.POST.get("U_email")
-            print(mail)
+            if mail.isdigit():
+                    tempotp.objects.all().delete()
+                    if  admin_info.objects.filter(phoneno=mail).exists():
+                        pass
+                        otp=random.randint(10000,99999)
+                        ls=tempotp(mobile=mail,otp=otp)
+                        ls.save()
+                        url="https://2factor.in/API/V1/15b5afe5-f8c5-11ec-9c12-0200cd936042/SMS/"+str(mail)+"/"+str(otp)
+                        rspn=requests.get(url)
+                        messages.success(request,"OTP sented successfully")
+                        return render(request,"otp.html")
+                    if  teacher_info.objects.filter(phoneno=mail).exists():
+                        otp=random.randint(10000,99999)
+                        ls=tempotp(mobile=mail,otp=otp)
+                        ls.save()
+                        url="https://2factor.in/API/V1/15b5afe5-f8c5-11ec-9c12-0200cd936042/SMS/"+str(mail)+"/"+str(otp)
+                        rspn=requests.get(url)
+                        messages.success(request,"OTP sented successfully")
+                        return render(request,"otp.html")
+                    if  user_info.objects.filter(phoneno=mail).exists():
+                        otp=random.randint(10000,99999)
+                        ls=tempotp(mobile=mail,otp=otp)
+                        ls.save()
+                        url="https://2factor.in/API/V1/15b5afe5-f8c5-11ec-9c12-0200cd936042/SMS/"+str(mail)+"/"+str(otp)
+                        rspn=requests.get(url)
+                        messages.success(request,"OTP sented successfully")
+                        return render(request,"otp.html")
+                        
             if not admin_info.objects.filter(Email=mail).exists():
                 if not teacher_info.objects.filter(Email=mail).exists():
                     if not user_info.objects.filter(Email=mail).exists():
@@ -110,27 +141,45 @@ def forgetpassmailsend(request):
             else:
                 messages.error("contact developer")
     return redirect('/')
-
 def activatea(request):
     email = request.session['mail']
     if request.method == 'POST':
         name = request.POST.get("U_name1")
         passwrd = request.POST.get("U_password1")
+        mobile=request.POST.get("U_phone1")
         if user_info.objects.filter(Email=email).exists():
-            user_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name)
-            messages.error(request, 'Your acount is Activated')
+            user_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name,phoneno=mobile)
+            messages.error(request, 'Your account is Activated')
             request.session['mail'] = email
             return redirect('studl/')
         elif teacher_info.objects.filter(Email=email).exists():
-            teacher_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name)
-            messages.error(request, 'Your acount is Activated')
+            teacher_info.objects.filter(Email=email).update(Activate=True,passwords=passwrd,Name=name,phoneno=mobile)
+            messages.error(request, 'Your account is Activated')
             request.session['mail'] = email
             return redirect('teachl/')
         else:
             messages.error(request, 'Email not found Contact Admin')
             return redirect('/')
     
-        
+def optcheck(request):
+    if request.method == 'POST':
+        otp = request.POST.get("otp")
+        if tempotp.objects.filter(otp=otp).exists():
+                    mail = tempotp.objects.get(otp=otp).mobile
+                    if  admin_info.objects.filter(phoneno=mail).exists():
+                         request.session['mail'] = admin_info.objects.get(phoneno=tempotp.objects.get(otp=otp).mobile).Email
+                         return render(request,"fpass.html")
+                    if  teacher_info.objects.filter(phoneno=mail).exists():
+                         request.session['mail'] = teacher_info.objects.get(phoneno=tempotp.objects.get(otp=otp).mobile).Email 
+                         return render(request,"fpass.html")
+                    if  user_info.objects.filter(phoneno=mail).exists():
+
+                        request.session['mail'] = user_info.objects.get(phoneno=tempotp.objects.get(otp=otp).mobile).Email 
+                        return render(request,"fpass.html")
+        else:
+            messages.error(request, 'OTP is incorrect')
+            return redirect('/')
+    pass
 
 def newpass(request):
     email = request.session['mail']
@@ -149,4 +198,6 @@ def newpass(request):
         else:
             messages.error(request, 'Email not found Contact Admin')
             return redirect('/')
-    
+            
+def otppage(res):
+    return render(res,"mailvar.html")

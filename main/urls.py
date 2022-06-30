@@ -12,5 +12,7 @@ urlpatterns = [
     path('active',activatea,name="activatea"),
     path('newpassword',newpass,name="newpasscreate"),
     path('fmail',forgetpassmailsend),
+    path('optcheck',optcheck,name="optcheck"),
+    path('otppage',otppage,name="otppage")
     #path('gauth/callback',CallbackV),
 ]
