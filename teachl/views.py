@@ -160,12 +160,36 @@ def uploader(respnce,cod,tcod):
           #youthub vedio ubload
           if respnce.POST.get('youtubelink'):
                savelink=respnce.POST.get('youtubevediolink')
-               starthour=int(respnce.POST.get('starthour'))
-               startminit=int(respnce.POST.get('startminit'))
-               startsecond=int(respnce.POST.get('startsecond'))
-               stophoure=int(respnce.POST.get('stophoure'))
-               stopminite=int(respnce.POST.get('stopminite'))
-               stopsecond=int(respnce.POST.get('stopsecond'))
+               starthour=0
+               startminit=0
+               startsecond=0
+               stophoure=0
+               stopminite=0
+               stopsecond=0
+               if respnce.POST.get('starthour') == '':
+                    starthour=0
+               else:
+                    starthour=int(respnce.POST.get('starthour'))
+               if respnce.POST.get('startminit') == '':
+                    startminit=0
+               else:
+                    startminit=int(respnce.POST.get('startminit'))
+               if respnce.POST.get('startsecond') == '':
+                    startsecond=0
+               else:
+                    startsecond=int(respnce.POST.get('startsecond'))
+               if respnce.POST.get('stophoure') == '':
+                    stophoure=0
+               else:
+                    stophoure=int(respnce.POST.get('stophoure'))
+               if respnce.POST.get('stopminite') == '':
+                    stopminite=0
+               else:
+                    stopminite=int(respnce.POST.get('stopminite'))
+               if respnce.POST.get('stopsecond') == '':
+                    stopsecond=0              
+               else:
+                    stopsecond=int(respnce.POST.get('stopsecond'))
                startin=(starthour*360)+(startminit*60)+(startsecond)
                stopin=(stophoure*360)+(stopminite*60)+(stopsecond)
                res = savelink.partition("spl_word")[2]
@@ -188,7 +212,6 @@ def uploader(respnce,cod,tcod):
           if respnce.POST.get('pdfupload'):
                
                pdffiles=respnce.FILES.getlist('pdffiles') #multi pdf upload
-               print(pdffiles)
                dpdf=tempuploader.objects.all()
                for pd in dpdf:
                     pd.delete()
@@ -197,7 +220,6 @@ def uploader(respnce,cod,tcod):
                     drivepassway=tempuploader(uploadfile=f,tcode=tcod) #storing the multiple pdf in temp uploader
                     drivepassway.save()
           try:
-               print("try")
                gauth.LoadCredentialsFile("creds.json")
                if gauth.credentials is None:
                     return HttpResponseRedirect(gauth.GetAuthUrl())
@@ -212,6 +234,7 @@ def uploader(respnce,cod,tcod):
                gauth.SaveCredentialsFile("creds.json")
                drive=GoogleDrive(gauth)
                pdffile=tempuploader.objects.all()
+               print("hi")
                for f in pdffile:
                     print("hi")
                     ls=code.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
@@ -267,6 +290,7 @@ def callback(request):
         global urladder
         pdffiles=tempuploader.objects.all() #geting all temp uploaded file
         for f in pdffiles:
+          print("hi")
           ls=code.objects.get(UniqCode=f.tcode) #tcode=topic code (Unique code  a identify the topic)
           parernt_id=folderspcifing(ls,drive)
           urladder=ls.RoomCode
