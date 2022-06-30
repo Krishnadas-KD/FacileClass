@@ -111,11 +111,7 @@
 </head>
 <script>
     function removeb() {
-        var a = {
-            {
-                context.presntformate
-            }
-        };
+        var a = {{context.presntformate}};
         var b = {
             {
                 mm.duedate
@@ -130,11 +126,9 @@
 
 <body onload="removeb()">
     <script>
-        { %
-            if context.popuplink %
-        }
-        window.location.replace("{{context.popuplink}}"); { % endif %
-        }
+        {% if context.popuplink %}
+        window.location.replace("{{context.popuplink}}");
+        {% endif %}
     </script>
     <section>
         <div class="container mt-0 navbar justify-content-center fixed-top navbar-light bg-light ">
