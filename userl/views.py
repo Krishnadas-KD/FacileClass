@@ -114,7 +114,7 @@ def uploader(respnce,cod,tcod):
           duedate=assigmentdetals.objects.get(UniqCode=tcod).duedate
           present=datetime.now()
          
-          GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'client_secrets.json'
+          GoogleAuth.DEFAULT_SETTINGS['client_config_file'] = 'sclient_secrets.json'
           if respnce.POST.get('pdfupload'):
                print("heelo")
                pdffiles=respnce.FILES.getlist('pdffiles') #multi pdf upload
@@ -124,7 +124,7 @@ def uploader(respnce,cod,tcod):
                for pd in dpdf:
                     pd.delete()
                for f in pdffiles: 
-
+                    print(tcod)
                     drivepassway=tempuploader(uploadfile=f,tcode=tcod) #storing the multiple pdf in temp uploader
                     drivepassway.save()
           try:
