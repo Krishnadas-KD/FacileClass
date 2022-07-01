@@ -206,7 +206,7 @@ def uploader(respnce,cod,tcod):
                if "youtu.be/" in savelink:
                     res = savelink.partition("youtu.be/")[2]
                     vediocode= res[0:11]
-                    vedifinallink="https://www.youtube.com/embed/"+vediocode+"?version=3&start="+startin+"&end="+stopin+"&autoplay=0&controls=0&rel=0&loop=1"
+                    vedifinallink="https://www.youtube.com/embed/"+str(vediocode)+"?version=3&start="+str(startin)+"&end="+str(stopin)+"&autoplay=0&controls=0&rel=0&loop=1"
                ls= code.objects.get(UniqCode=tcod)
                linksave=youtubelink(RoomCode=ls.RoomCode,UniqCode=ls.UniqCode,link=vedifinallink)
                linksave.save()
